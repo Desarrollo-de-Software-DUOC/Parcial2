@@ -1,0 +1,86 @@
+{% extends "plantillaBase.html" %} {% block tituloPagina %}
+<div class="row justify-content-center">
+    <h1>Mantenedor Productos</h1>
+</div>
+{% endblock %}
+<br><br> {% block contenido %}
+
+<br><br>
+<div class="row justify-content-center">
+    <h3>Registro de Productos</h3>
+</div>
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-2">
+        id
+    </div>
+    <div class="col-8 col-sm-4">
+        <input type="text" name="txtId" class="form-control">
+    </div>
+    <div class="col-4 col-sm-2">
+        <input type="submit" name="btnBuscar" class="btn btn-warning btn-block">
+    </div>
+</div>
+<br>
+<br>
+<div class="row">
+    <div class="col-12 col-md-1 offset-md-3">Categoria</div>
+    <div class="col-12 col-md-4">
+        <select name="cmbCategoria" name="txtCategoria" class="txtArea form-control" maxlength="6">
+                    <option value="0">Seleccionar</option>
+                    <option value="1">Verduras</option>
+                    <option value="2">Frutas</option>
+                    <option value="3">Otros</option>
+                </select>
+    </div>
+    <br>
+</div>
+<br>
+<div class="row">
+    <div class="col-12 col-md-1 offset-md-3">Código</div>
+    <div class="col-12 col-md-4">
+        <input type="text" name="txtCodigo" class="txtCodigo form-control" maxlength="10">
+    </div>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-12 col-md-1 offset-md-3">Descripción</div>
+    <div class="col-12 col-md-4">
+        <input type="text" name="txtdescripcion" class="txtdescripcion form-control" maxlength="20">
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-12 col-md-1 offset-md-3">Stock</div>
+    <div class="col-12 col-md-4">
+        <input type="text" name="txtStock" class="txtStock form-control" maxlength="20">
+    </div>
+
+</div>
+<br>
+<div class="row">
+    <div class="col-12 col-md-1 offset-md-3">Precio Costo</div>
+    <div class="col-12 col-md-4">
+        <input type="text" name="txtprecioCosto" class="txtprecioCosto form-control" maxlength="6">
+    </div>
+</div>
+
+<br>
+<div class="row">
+    <div class="col-12 col-md-1 offset-md-3">Precio Venta</div>
+    <div class="col-12 col-md-4">
+        <input type="text" name="txtprecioVenta" class="txtprecioVenta form-control" maxlength="6">
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-12 col-md-1 offset-md-3">Opciones</div>
+    <div class="col-12 col-md-4">
+        <button type="button" class="btn btn-primary">Limpiar</button>
+        <button type="button" class="btn btn-secondary">Grabar</button>
+        <button type="button" class="btnEnviar2 btn btn-success">Aceptar</button>
+        <button type="button" class="btn btn-danger">Volver</button>
+    </div>
+</div>
+{% endblock %}

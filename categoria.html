@@ -1,0 +1,46 @@
+{% extends "plantillaBase.html" %}
+
+<br> {% block tituloPagina %}
+
+<br><br>
+<div class="row justify-content-center">
+    <h1>Área</h1>
+</div>
+<br> { % endblock %}
+
+
+<br><br> {% block contenido %}
+
+
+<div class="row">
+    <div class="col-12 col-md-1 offset-md-3">
+        id
+    </div>
+    <div class="col-12 col-md-4">
+        <input type="text" name="txtid" class="txtid form-control" maxlength="13">
+    </div>
+    <div class="col-4 col-sm-2">
+        <input type="submit" name="btnBuscar" class="btn btn-warning btn-block" value="Buscar">
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-1 offset-md-3">Descripción</div>
+    <div class="col-12 col-md-4">
+        <input type="text" name="txtDescripcion" class="txtDescripcion form-control" maxlength="50">
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-md-1 offset-md-3">Activo</div>
+    <div class="col-12 col-md-4">
+        <input type="text" name="txtActivo" class="txtActivo form-control" maxlength="50">
+    </div>
+</div>
+
+<br><br>
+<div class="row">
+    <div class="col-12 col-md-1 offset-md-3">
+        Opciones
+    </div>
+
+</div>
+<br> {% endblock %}

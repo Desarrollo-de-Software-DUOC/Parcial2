@@ -1,0 +1,165 @@
+{% extends "plantillaBase.html" %}
+
+{% block tituloPagina %}
+	<div class="row justify-content-center">
+		<h1>Registro de Producto</h1>
+	</div>
+{% endblock %}
+
+{% block contenido %}
+	<div class="row justify-content-center">
+		<div class="col-12 col-sm-8">
+	{% if errores %}
+			<div class="alert alert-danger" role="alert">
+			  {{ errores.cmbMarca }}
+			  {{ errores.cmbCategoria }}
+			</div>
+	{% endif %}
+	{% if mensaje %}
+			<div class="alert alert-success" role="alert">
+			  {{ mensaje }}
+			</div>
+	{% endif %}
+		</div>	
+	</div>
+	<form action="{% url 'producto' %}" method="post">
+		{% csrf_token %} 
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				id
+			</div>
+			<div class="col-8 col-sm-4">
+				<input type="text" name="txtId" class="form-control" value="{{ item.id }}">
+			</div>
+			<div class="col-4 col-sm-2">
+				<input type="submit" name="btnBuscar" class="btn btn-warning btn-block" value="Buscar">
+			</div>		
+		</div>
+		<br>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Marca
+			</div>
+			<div class="col-12 col-sm-6">
+				<select name="cmbMarca" class="form-control">
+					<option value="0">Seleccionar</option>
+{% if cmbMarca %}
+	{% for fila in cmbMarca %}
+		{% if fila.nombre|upper == item.marca|upper %}
+					<option value="{{ fila.id }}" selected>{{ fila.nombre|upper }}</option>
+		{% else %}
+					<option value="{{ fila.id }}">{{ fila.nombre|upper }}</option>
+		{% endif %}
+	{% endfor %}
+{% endif %}
+				</select>
+			</div>		
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Categoría
+			</div>
+			<div class="col-12 col-sm-6">
+				<select name="cmbCategoria" class="form-control">
+					<option value="0">Seleccionar</option>
+{% if cmbCategoria %}
+	{% for fila in cmbCategoria %}
+					<option value="{{ fila.id }}" {% if fila.nombre|upper == item.categoria|upper %} selected {% endif %}>{{ fila.nombre }}</option>
+	{% endfor %}
+{% endif %}
+				</select>
+			</div>		
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Código
+			</div>
+			<div class="col-12 col-sm-6">
+				<input type="text" name="txtCodigo" class="form-control" value="{{ item.codigo }}">
+			</div>		
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Descripción
+			</div>
+			<div class="col-12 col-sm-6">
+				<input type="text" name="txtDescripcion" class="form-control" value="{{ item.descripcion }}">
+			</div>		
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Stock
+			</div>
+			<div class="col-12 col-sm-6">
+				<input type="text" name="txtStock" class="form-control" value="{{ item.stock }}">
+			</div>		
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Precio Costo
+			</div>
+			<div class="col-12 col-sm-6">
+				<input type="text" name="txtPrecioCosto" class="form-control" value="{{ item.precioCosto }}">
+			</div>		
+		</div>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Precio Venta
+			</div>
+			<div class="col-12 col-sm-6">
+				<input type="text" name="txtPrecioVenta" class="form-control" value="{{ item.precioVenta }}">
+			</div>		
+		</div>
+		<br>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Opciones
+			</div>
+			<div class="col-12 col-sm-6">
+				<input type="submit" name="btnGrabar" class="btn btn-primary" value="Grabar">
+				<input type="submit" name="btnListar" class="btn btn-success" value="Listar">
+{% if item.id > 0 %}
+				<input type="submit" name="btnEliminar" class="btn btn-danger float-right" value="Eliminar">
+{% endif %}
+			</div>		
+		</div>
+	</form>
+{% endblock %}
+
+{% block listado %}
+{% if lista %}
+
+	<div class="row justify-content-center">
+		<div>
+			<div class="table-responsive">
+				<table class="table">
+					<thead class="table-active">
+						<th>#</th>
+						<th>Marca</th>
+						<th>Categoria</th>
+						<th>Código</th>
+						<th>Descripción</th>
+						<th>Stock</th>
+						<th>Precio Costo</th>
+						<th>Precio Venta</th>
+					</thead>
+					<tbody>
+{% for fila in lista %}
+						<tr>
+							<td>{{ fila.id }}</td>
+							<td>{{ fila.marca|default_if_none:"Genérica"|title}}</td>
+							<td>{{ fila.categoria|default_if_none:"No Categorizado" }}</td>
+							<td>{{ fila.codigo }}</td>
+							<td>{{ fila.descripcion }}</td>
+							<td>{{ fila.stock }}</td>
+							<td>${{ fila.precioCosto }}</td>
+							<td>${{ fila.precioVenta|floatformat:"1g" }}</td>
+						</tr>
+{% endfor %}
+					</tbody>
+				</table>			
+			</div>			
+		</div>
+	</div>
+{% endif %}
+{% endblock %}

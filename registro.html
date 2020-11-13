@@ -1,0 +1,32 @@
+{# La herencia debe estar en la primera linea #}
+{% extends "plantillaBase.html" %}
+
+
+{% block tituloPagina %}
+	<h1>Registro de usuarios</h1>
+{% endblock %}
+
+{% block contenido %}
+	<h2>Su nombre es: {{ nombre }}</h2>
+	<label>Los valores son: {{ valor1 }} , {{ valor2 }}</label>	
+	<form action="{% url 'registro' %}" method="post">
+		{% csrf_token %} 
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Nombre
+			</div>
+			<div class="col-12 col-sm-6">
+				<input type="text" name="txtNombre" class="form-control">
+			</div>
+		</div>
+		<br>
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-2">
+				Opciones
+			</div>
+			<div class="col-12 col-sm-6">
+				<input type="submit" name="btnAceptar" class="btn btn-primary">
+			</div>
+		</div>	
+	</form>		
+{% endblock %}
